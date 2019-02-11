@@ -8,15 +8,16 @@ import re
 import sys
 
 def add(dir_):
+    i = 1
+    while i <= 9:
         try:
-            os.mkdir(os.path.join(os.getcwd(), dir_))
+            os.mkdir(os.path.join(os.getcwd(), dir_+str(i)))
         except FileExistsError:
             print('Такая директория уже существует')
 
-i = 1
-while i <= 9:
-    add('dir_'+str(i))
-    i += 1
+        i += 1
+
+add('dir_')
 
 def rem(dir_):
     try:

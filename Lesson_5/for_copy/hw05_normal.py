@@ -48,12 +48,10 @@ while True:
         print("{}".format(os.listdir(os.getcwd())))
     elif key == 3:
         n = get_dir_file_name()
-        rem(n)
-        print("Вы успешно удалили в {} директорию".format(n))
+        print("Вы успешно удалили в {} директорию".format(rem(n)))
     elif key == 4:
         n = get_dir_file_name()
-        add(n)
-        print("Вы успешно создали в {}".format(n))
+        print("Вы успешно создали в {}".format(add(n)))
     elif key == 5:
         print("Досвидания")
         break
