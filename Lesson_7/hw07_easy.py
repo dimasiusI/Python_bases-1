@@ -3,6 +3,18 @@
 и т.д.
 '''
 
+class MyList(list):
+    def __getitem__(self, offset):
+        return list.__getitem__(self, offset - 5)
+
+test = MyList([1, 2, 3, 4, 'end'])
+print(test[5])
+
+#второй вариант реализации
+test = [1, 2, 3, 4, 'end']
+
+for index, item in enumerate(test, start=5):
+    print(index)
 '''
 Задача-2: Придумать любу структуру данных. Она должна содержать два атрибута.
 Значение одного атрибута передается в конструктор, а значение другого - определяетсяъ
@@ -13,7 +25,29 @@
 который вы захотите. Проверить еще раз. В комментарии написать, в чем разница
 между подходом с использованием метода __str__ и без него.
 '''
+import re
 
+class MyClass:
+    def __init__ (self, name):
+        self.name = name
+        self.age = 10 if name[0] == 'Я' else 20
+
+    def get_name_age (self):
+        return self.name + ' ' + str(self.age)
+
+    def __str__(self):
+        return '{}'.format(self.get_name_age())
+
+    @staticmethod
+    def age_plus (age):
+        age = age[0] + str(int(age[-1]) + 1)
+        return age
+
+name1 = MyClass('Вася')
+print(name1)
+
+#при переопределении __str__ меняется отображение, т.к. без его использования выводится,
+#что то, что мы попросили отобразить является экземпляром класса.
 '''
 Задача-3: Продолжить работу над задачей 2. Добавить еще один метод. Он должен
 вывзваться из экземпляра класса. В этот метод нужно передать некое значение.
@@ -21,5 +55,5 @@
 Реализовать для этого метода декоратор @staticmethod
 '''
 
-
+print(name1.age_plus('20'))
 
