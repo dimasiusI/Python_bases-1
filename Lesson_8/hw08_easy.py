@@ -5,6 +5,18 @@
 элемента словаря, как к атрибуту класса.
 '''
 
+class Bilder:
+    def __init__(self, a, b):
+        self.dict = dict(zip(a, b))
+        for key, value in self.dict.items():
+            setattr(self, key, value)
+
+workers = ['Petr', 'Ivan', 'Sonya', 'Vasya']
+hours = [10, 20, 30, 40]
+
+do = Bilder(workers, hours)
+
+print(do.Ivan)
 
 
 
@@ -17,4 +29,16 @@
 списка.
 '''
 
+class Wrapper:
+    def __init__(self, object):
+        self.wrapped = object
 
+    def __getattr__(self, attrname):
+        print('Trace:', attrname)
+        return getattr(self.wrapped, attrname)
+
+x = Wrapper([1, 2, 3])
+x.append(4)
+print(x.wrapped)
+x.clear()
+print(x.wrapped)

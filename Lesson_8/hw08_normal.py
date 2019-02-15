@@ -7,3 +7,34 @@
 второго класса).
 '''
 
+
+class First:
+    def __init__ (self, a, b):
+        self.class_2 = Second(a, b)
+
+    def __getattr__(self, attr):
+        return getattr(self.class_2, attr)
+
+class Second:
+    def __init__ (self, a, b):
+        self.a = a
+        self.b = b
+
+    @property
+    def del_1(self):
+        return self.a % self.b
+
+    @property
+    def del_2(self):
+        return self.a / self.b
+
+    @property
+    def del_3(self):
+        return self.a // self.b
+
+x = First(10, 2)
+
+print(x.del_1)
+print(x.del_2)
+print(x.del_3)
+
